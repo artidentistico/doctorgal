@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -1173,31 +1172,76 @@
   </div>
   <div>
     <div class="section-label reveal">Mesaj</div>
-    <form class="contact-form reveal" onsubmit="return false;">
+    <form class="contact-form reveal" id="contactForm">
+      <input type="hidden" name="access_key" value="71d59570-cd6a-4016-88d3-18c2e52fdb23">
+      <input type="hidden" name="subject" value="Solicitare programare - Website DoctorGal">
+      <input type="hidden" name="from_name" value="DoctorGal Website">
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
       <div class="form-group">
         <label class="form-label">Nume complet</label>
-        <input type="text" class="form-input" placeholder="Ion Popescu">
+        <input type="text" name="name" class="form-input" placeholder="Ion Popescu" required>
       </div>
       <div class="form-group">
         <label class="form-label">Telefon</label>
-        <input type="tel" class="form-input" placeholder="+40 700 000 000">
+        <input type="tel" name="phone" class="form-input" placeholder="+40 700 000 000" required>
       </div>
       <div class="form-group">
         <label class="form-label">Serviciu dorit</label>
-        <input type="text" class="form-input" placeholder="ex. Albire dentară">
+        <input type="text" name="serviciu" class="form-input" placeholder="ex. Albire dentară">
       </div>
       <div class="form-group">
         <label class="form-label">Mesaj</label>
-        <textarea class="form-textarea" placeholder="Scrieți-ne orice detalii relevante…"></textarea>
+        <textarea name="message" class="form-textarea" placeholder="Scrieți-ne orice detalii relevante…"></textarea>
       </div>
       <label class="form-consent">
         <input type="checkbox" id="gdprConsent" onchange="document.getElementById('formSubmitBtn').disabled = !this.checked;">
         <span>Sunt de acord cu prelucrarea datelor mele cu caracter personal (nume, telefon, e-mail) de către Arti Dentistico SRL în scopul înregistrării și confirmării programării mele online, în conformitate cu <a href="#" onclick="event.preventDefault(); document.getElementById('privacyModal').classList.add('active');" style="color: var(--gold); text-decoration: underline;">Politica de Confidențialitate</a>. <em>(Pentru a trimite programarea, este necesar să acceptați Politica de Confidențialitate)</em></span>
       </label>
       <button type="submit" class="form-submit" id="formSubmitBtn" disabled>Trimite solicitarea</button>
+      <p id="formStatus" style="font-size:0.78rem; margin-top:0.6rem; display:none;"></p>
     </form>
   </div>
 </section>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = document.getElementById('formSubmitBtn');
+    var status = document.getElementById('formStatus');
+    var data = new FormData(form);
+
+    btn.disabled = true;
+    btn.textContent = 'Se trimite…';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(result) {
+      status.style.display = 'block';
+      if (result.success) {
+        status.style.color = '#2e8b57';
+        status.textContent = 'Mulțumim! Solicitarea a fost trimisă cu succes. Te vom contacta în curând.';
+        form.reset();
+      } else {
+        status.style.color = '#c0392b';
+        status.textContent = 'A apărut o eroare. Te rugăm să ne suni direct la 0752 119 919.';
+      }
+      btn.textContent = 'Trimite solicitarea';
+      btn.disabled = !document.getElementById('gdprConsent').checked;
+    })
+    .catch(function() {
+      status.style.display = 'block';
+      status.style.color = '#c0392b';
+      status.textContent = 'A apărut o eroare de conexiune. Te rugăm să ne suni direct la 0752 119 919.';
+      btn.textContent = 'Trimite solicitarea';
+      btn.disabled = !document.getElementById('gdprConsent').checked;
+    });
+  });
+</script>
 
 <!-- FOOTER -->
 <footer>
