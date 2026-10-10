@@ -107,7 +107,7 @@
       "name": "Cât costă o fațetă dentară în Cluj?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tarifele pentru fațete dentare la DoctorGal sunt: fațetă ceramică feldspatică 2.200 RON/dinte, fațetă E.max 2.000 RON/dinte, fațetă directă din compozit 700 RON/dinte."
+        "text": "Tarifele pentru fațete dentare la DoctorGal sunt: fațetă ceramică feldspatică 2.000 – 2.200 RON/dinte, fațetă E.max 2.000 RON/dinte, fațetă directă din compozit 700 RON/dinte."
       }
     },
     {
@@ -245,13 +245,66 @@
 <div class="nav-overlay" id="navOverlay"></div>
 <section class="service-hero reveal">
   <div class="section-label">Servicii — Fațete Dentare</div>
-  <h1>Fațete dentare în Cluj-Napoca</h1>
-  <p class="service-intro" style="font-size:1.4rem; font-weight:700; font-style:normal; font-family:'DM Sans', Arial, sans-serif; color:var(--text);">Zâmbetul tău. Forma ta. Natural, fără compromisuri.</p>
-  <p class="service-intro" style="margin-bottom:1.5rem;">La DoctorGal, nu creăm zâmbete după un șablon. Analizăm fiecare caz în parte și construim un rezultat personalizat, în care estetica, naturalețea și armonia se întâlnesc. Pentru că cel mai frumos zâmbet este cel care pare că a fost întotdeauna al tău.</p>
-  <p class="service-intro">Dacă cauți <strong>fațete dentare în Cluj-Napoca</strong>, cabinetul nostru din Cartierul Gheorgheni tratează anual zeci de cazuri, de la simple corecții estetice până la reabilitări complete de zâmbet. În funcție de dorințele și de particularitățile fiecărui pacient, recomandăm adesea <a href="fatete-feldspatice-cluj.html">fațete feldspatice</a>, lucrate manual pentru o translucență superioară. Înainte de a lua o decizie, poți vedea rezultatul preconizat printr-un <a href="direct-mock-up-cluj.html">Direct Mock-Up</a> chiar în cabinet sau printr-un <a href="smile-design-cluj.html">Smile Design</a> digital, realizat pe baza fotografiilor tale.</p>
+  <h1>Alege un specialist în fațete dentare.</h1>
+  <p class="service-intro" style="font-size:1.4rem; font-weight:700; font-style:normal; font-family:'DM Sans', Arial, sans-serif; color:var(--text);">Fațete dentare personalizate în Cluj-Napoca</p>
+  <p class="service-intro">De la corecții estetice discrete până la transformări complexe ale zâmbetului, fiecare caz este planificat individual pentru un rezultat natural, armonios și potrivit fizionomiei tale.</p>
   <div style="margin-top:2rem;">
-    <a href="#contact" class="btn-primary" style="font-weight:700;">Vreau să aflu dacă sunt potrivit(ă) pentru fațete</a>
+    <a href="#contact" class="btn-primary btn-burgundy" style="font-weight:700;">Vreau să aflu dacă sunt potrivit(ă) pentru fațete</a>
   </div>
+
+  <div class="review-carousel" id="reviewCarousel" aria-label="Recenzii Google">
+    <div class="review-slides">
+      <div class="review-card is-current">
+        <div class="review-stars" aria-label="5 stele">★★★★★</div>
+        <p class="review-text">„Sunt foarte mulțumită de fațetele dentare! Rezultatul este mult mai frumos și natural decât mi-aș fi imaginat. Se vede atenția la detalii și precizia cu care a fost realizată fiecare etapă. Mi-a schimbat complet zâmbetul, dar într-un mod foarte natural. Sunt extrem de încântată de rezultat și recomand cu drag această clinică! 🤍”</p>
+        <p class="review-author"><strong>Noémi Szováti</strong> — recenzie Google</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-label="5 stele">★★★★★</div>
+        <p class="review-text">„Doctor Arthur este un medic excepțional — atent, profesionist și empatic. Mi-a explicat totul clar și m-am simțit în mâini bune de la prima consultație. Recomand cu toată încrederea!”</p>
+        <p class="review-author"><strong>Iosif Mirt</strong> — recenzie Google</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-label="5 stele">★★★★★</div>
+        <p class="review-text">„Recomand cu încredere acest cabinet. Medicii sunt profesioniști și atenți, iar cabinetul este modern, curat și foarte plăcut.”</p>
+        <p class="review-author"><strong>Paul Degan</strong> — recenzie Google</p>
+      </div>
+    </div>
+    <div class="review-controls">
+      <button type="button" class="review-btn" id="reviewPrev" aria-label="Recenzia anterioară">&#8249;</button>
+      <div class="review-dots" id="reviewDots"></div>
+      <button type="button" class="review-btn" id="reviewNext" aria-label="Recenzia următoare">&#8250;</button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var root = document.getElementById('reviewCarousel');
+    if (!root) return;
+    var cards = root.querySelectorAll('.review-card');
+    if (cards.length < 2) return;
+    var dotsBox = document.getElementById('reviewDots');
+    var i = 0, timer;
+    root.classList.add('is-active');
+    var dots = [];
+    cards.forEach(function (_, n) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.className = 'review-dot'; d.setAttribute('aria-label', 'Recenzia ' + (n + 1));
+      d.addEventListener('click', function () { show(n); restart(); });
+      dotsBox.appendChild(d); dots.push(d);
+    });
+    function show(n) {
+      i = (n + cards.length) % cards.length;
+      cards.forEach(function (c, k) { c.classList.toggle('is-current', k === i); });
+      dots.forEach(function (d, k) { d.classList.toggle('is-current', k === i); });
+    }
+    function restart() { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 8000); }
+    document.getElementById('reviewPrev').addEventListener('click', function () { show(i - 1); restart(); });
+    document.getElementById('reviewNext').addEventListener('click', function () { show(i + 1); restart(); });
+    root.addEventListener('mouseenter', function () { clearInterval(timer); });
+    root.addEventListener('mouseleave', restart);
+    show(0); restart();
+  })();
+  </script>
 </section>
 
 <section class="service-section reveal">
@@ -289,7 +342,7 @@
 </section>
 
 <section class="service-section reveal">
-  <h2>De ce DoctorGal</h2>
+  <h2>De ce DoctorGal?</h2>
   <div style="display:flex; gap:3rem; align-items:flex-start; flex-wrap:wrap; margin-bottom:2rem;">
     <img src="images/img-dr-gal-tratament.jpg" alt="Dr. Gal Arthur în timpul unui tratament stomatologic la cabinetul DoctorGal" style="width:280px; max-width:100%; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.15); object-fit:cover; height:380px;" loading="lazy">
     <div style="flex:1; min-width:260px;">
@@ -314,7 +367,7 @@
   </div>
 
   <div style="margin-top:2rem;">
-    <a href="#contact" class="btn-primary">Vreau să discut despre cazul meu</a>
+    <a href="#contact" class="btn-primary btn-burgundy">Vreau să discut despre cazul meu</a>
   </div>
 </section>
 
@@ -336,7 +389,7 @@
         <h3>Cât costă o fațetă dentară în Cluj?</h3>
         <p>La DoctorGal, tarifele pentru fațete dentare sunt:</p>
         <ul style="margin:0.6rem 0 0 1.2rem; color:var(--text-muted); font-size:0.85rem; line-height:1.9;">
-          <li><a href="fatete-feldspatice-cluj.html">Fațetă ceramică feldspatică</a>: 2.200 RON/dinte</li>
+          <li><a href="fatete-feldspatice-cluj.html">Fațetă ceramică feldspatică</a>: 2.000 – 2.200 RON/dinte</li>
           <li>Fațetă E.max: 2.000 RON/dinte</li>
           <li>Fațetă directă din compozit: 700 RON/dinte</li>
         </ul>
@@ -376,7 +429,7 @@
 <section class="service-cta reveal">
   <h2>Fațete dentare în Cluj-Napoca – DoctorGal</h2>
   <p style="max-width:600px; margin:0 auto 2rem; color:var(--text-muted); font-size:0.9rem; line-height:1.8;">Dacă te gândești la fațete dentare în Cluj-Napoca, primul pas este să afli dacă sunt potrivite pentru tine și ce variantă poate oferi rezultatul pe care îl cauți. Te așteptăm la DoctorGal pentru o consultație și o evaluare personalizată.</p>
-  <a href="#contact" class="btn-primary">Programează-te acum</a>
+  <a href="#contact" class="btn-primary btn-burgundy">Programează-te acum</a>
 </section>
 <section id="contact">
   <div>
