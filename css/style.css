@@ -1159,10 +1159,4 @@ details.faq-item .faq-answer { padding-top: 0.9rem; }
 .step-card.info-card .step-title { font-size: 1.8rem; line-height: 1.25; margin-bottom: 1.2rem; }
 @media (max-width: 640px) { .step-card.info-card .step-title { font-size: 1.5rem; } }
 
-/* Highlighted info card (burgundy) */
-.step-card.info-card { background: #7a1f3d; border-color: #7a1f3d; box-shadow: 0 10px 30px rgba(122,31,61,0.28); padding: 2.6rem 2.5rem; }
-.step-card.info-card .step-title { color: #fff; }
-.step-card.info-card p { color: rgba(255,255,255,0.92); font-size: 0.95rem; }
-.step-card.info-card p strong { color: #fff; }
-.step-card.info-card a, .step-card.info-card a:hover { color: #fff; }
 .step-card.info-card p strong { font-family: 'Segoe UI Black', 'Segoe UI', 'Archivo', Arial, sans-serif; font-weight: 900; }
