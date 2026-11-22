@@ -1094,9 +1094,7 @@ a.service-card {
 .service-section li a,
 .faq-item a {
   color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration: none;
   transition: color 0.3s;
 }
 .service-hero p a:not(.btn-primary):not(.btn-ghost):visited,
@@ -1142,3 +1140,29 @@ details.faq-item summary::after { content: '+'; color: #7a1f3d; font-size: 1.4re
 details.faq-item[open] summary::after { content: '\2013'; }
 details.faq-item summary:focus-visible { outline: 2px solid #7a1f3d; outline-offset: 4px; }
 details.faq-item .faq-answer { padding-top: 0.9rem; }
+
+/* STEP CARDS (Etapele tratamentului) */
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
+.step-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.5rem; background: #e2e2df; border: 1px solid #d0d0cc; border-radius: 10px; }
+.step-num { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #7a1f3d; color: #fff; font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+.step-title { font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; line-height: 1.35; color: var(--text); margin-bottom: 0.8rem; }
+.step-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 0; }
+.step-card a { color: inherit; text-decoration: none; }
+.step-card a:hover { color: #7a1f3d; }
+@media (max-width: 1024px) { .steps-grid { grid-template-columns: 1fr; } }
+
+.service-section p.steps-price { text-align: center; color: #000; font-weight: 700; font-size: 1.05rem; margin: 1.8rem 0 0; }
+
+.step-card.info-card { margin-top: 2rem; padding: 2rem 2.5rem; }
+.step-card.info-card p { max-width: 820px; }
+
+.step-card.info-card .step-title { font-size: 1.8rem; line-height: 1.25; margin-bottom: 1.2rem; }
+@media (max-width: 640px) { .step-card.info-card .step-title { font-size: 1.5rem; } }
+
+/* Highlighted info card (burgundy) */
+.step-card.info-card { background: #7a1f3d; border-color: #7a1f3d; box-shadow: 0 10px 30px rgba(122,31,61,0.28); padding: 2.6rem 2.5rem; }
+.step-card.info-card .step-title { color: #fff; }
+.step-card.info-card p { color: rgba(255,255,255,0.92); font-size: 0.95rem; }
+.step-card.info-card p strong { color: #fff; }
+.step-card.info-card a, .step-card.info-card a:hover { color: #fff; }
+.step-card.info-card p strong { font-family: 'Segoe UI Black', 'Segoe UI', 'Archivo', Arial, sans-serif; font-weight: 900; }
